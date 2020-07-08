@@ -58,8 +58,8 @@ public class GestionTemperaturas {
 	
 	static void agregarTemperatura(ArrayList<Ciudad> datos) {
 		
-		Ciudad datoUsuario = new Ciudad();
 		String ciudad;
+		Double temperatura;
 		
 		sc = new Scanner(System.in);
 		
@@ -68,14 +68,14 @@ public class GestionTemperaturas {
 		ciudad = sc.nextLine();
 		
 		if (!compruebaCiudad(datos, ciudad)) {
-		
-			datoUsuario.setNombre(ciudad);
 			
 			sc = new Scanner(System.in);
 			
 			System.out.println("Introduce nueva temperatura: ");
 			
-			datoUsuario.setTemperatura(sc.nextDouble());
+			temperatura = sc.nextDouble();
+			
+			Ciudad datoUsuario = new Ciudad(ciudad, temperatura);
 			
 			datos.add(datoUsuario);
 			

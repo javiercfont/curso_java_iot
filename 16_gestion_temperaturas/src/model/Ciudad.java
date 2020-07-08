@@ -5,11 +5,21 @@ public class Ciudad {
 	private String nombre;
 	private Double temperatura;
 	
+	// Constructor
+	
+	public Ciudad(String nombre, Double temperatura) {
+		
+		this.nombre = nombre;
+		this.temperatura = temperatura;
+	}
+	
+	// Getters y setters
+	
 	public String getNombre() {
 		
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		
 		this.nombre = nombre;
