@@ -39,25 +39,50 @@ public class GestionTemperaturas {
 		sc.close();
 	}
 	
+	// Comprueba si existe la ciudad
+	
+	static boolean compruebaCiudad(ArrayList<Ciudad> datos, String ciudad) {
+		
+		for (Ciudad dato : datos) {
+			
+			if (dato.getNombre().equalsIgnoreCase(ciudad)) {
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	// Agrega nueva temperatura
 	
 	static void agregarTemperatura(ArrayList<Ciudad> datos) {
 		
 		Ciudad datoUsuario = new Ciudad();
+		String ciudad;
 		
 		sc = new Scanner(System.in);
 		
 		System.out.println("Introduce nueva ciudad: ");
 		
-		datoUsuario.setNombre(sc.nextLine());
+		ciudad = sc.nextLine();
 		
-		sc = new Scanner(System.in);
+		if (!compruebaCiudad(datos, ciudad)) {
 		
-		System.out.println("Introduce nueva temperatura: ");
-		
-		datoUsuario.setTemperatura(sc.nextDouble());
-		
-		datos.add(datoUsuario);
+			datoUsuario.setNombre(ciudad);
+			
+			sc = new Scanner(System.in);
+			
+			System.out.println("Introduce nueva temperatura: ");
+			
+			datoUsuario.setTemperatura(sc.nextDouble());
+			
+			datos.add(datoUsuario);
+			
+		} else {
+			
+			System.out.println("La ciudad ya existe\r\n");
+		}
 	}
 	
 	
