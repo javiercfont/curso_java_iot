@@ -104,6 +104,6 @@ public class Primitiva {
 		// Presenta el resultado
 		
 		System.out.println("Combinación del boleto: " + boleto);
-		System.out.println("Reintegro: " + (int)((Math.random() * maxReintegro) + 1));
+		System.out.println("Reintegro: " + (int)((Math.random() * maxReintegro)));
 	}
 }
