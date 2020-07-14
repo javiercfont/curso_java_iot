@@ -11,26 +11,14 @@ public class PedidosService {
 	
 	private LinkedList<Pedido> pedidos = new LinkedList<>();
 	
-	// Se comprueba que existe el pedido
-	
-	private boolean comprobarPedido(Pedido p) {
-		
-		for (Pedido pedido : pedidos) {
-			
-			if (pedido.equals(p)) {
-				
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
 	// Se registra el pedido si no existe
 	
 	public boolean registrarPedido(Pedido p) {
 		
-		if (!comprobarPedido(p)) {
+		/* contains usa el equals sobreescrito de Pedido
+		   Por tanto 2 objetos Pedido son iguales si el id es el mismo */
+		
+		if (!this.pedidos.contains(p)) {
 			
 			pedidos.add(p);
 			

@@ -128,7 +128,7 @@ public class GestionPedidos {
 
 			if (!ps.registrarPedido(pedido)) {
 				
-				System.out.println("El número de pedido ya EXISTE. Pedido NO registrado");
+				System.out.println("\r\nEl número de pedido ya EXISTE. Pedido NO registrado");
 				
 				return false;
 			}
