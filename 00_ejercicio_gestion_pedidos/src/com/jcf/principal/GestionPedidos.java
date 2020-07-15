@@ -163,42 +163,19 @@ public class GestionPedidos {
 	
 	// Prioriza un pedido
 	
-	static void priorizarPedido(PedidosService ps) {
-		
-		// Se intenta priorizar un pedido si hay pedidos
-		// Si no, se informa al usuario
+	static void priorizar(PedidosService ps) {
 		
 		if (ps.getPedidos().size() != 0) {
-
-			int id;
-			int posicion;
-
-			Pedido prioritario;
-			Pedido secundario;
-
+			
 			// Solicitud del número de pedido
 
-			id = leerNumeroPedido();
+			int id = leerNumeroPedido();
+			
+			Pedido pedido = ps.priorizarPedido(id);
+		
+			if (pedido != null) {
 
-			// Buscamos la posición que ocupa el pedido
-
-			posicion = ps.buscarPedido(id);
-
-			// Si hay más de un pedido
-
-			if (posicion > 0) {
-
-				// Se guardan los pedidos a intercambiar
-
-				prioritario = ps.getPedidos().get(posicion);
-				secundario = ps.getPedidos().get(posicion - 1);
-
-				// Se da prioridad al pedido prioritario buscado
-
-				ps.getPedidos().set(posicion, secundario);
-				ps.getPedidos().set((posicion - 1),  prioritario);
-
-				System.out.println("Se ha priorizado el " + prioritario);
+				System.out.println("Se ha priorizado el " + pedido);
 
 			} else {
 
@@ -229,10 +206,7 @@ public class GestionPedidos {
 		
 			System.out.println("\r\nLISTA DE PEDIDOS PENDIENTES: \r\n");
 			
-			for (Pedido pedido : ps.getPedidos()) {
-
-				System.out.println(pedido);
-			}
+			ps.getPedidos().forEach(pedido -> System.out.println(pedido));
 			
 		} else {
 			
@@ -278,7 +252,7 @@ public class GestionPedidos {
 					
 				case 3:
 					
-					priorizarPedido(servicioPedidos);
+					priorizar(servicioPedidos);
 					break;
 					
 				case 4:

@@ -1,6 +1,7 @@
 package service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import model.Pedido;
 
@@ -76,9 +77,46 @@ public class PedidosService {
 		return facturacion;
 	}
 	
+	// Prioriza un pedido
+	
+	public Pedido priorizarPedido(int id) {
+		
+		// Se intenta priorizar un pedido si hay pedidos
+		// Si no, se informa al usuario
+		
+		Pedido prioritario = null;
+		
+		if (pedidos.size() != 0) {
+			
+			int posicion;
+			Pedido secundario = null;
+
+			// Buscamos la posición que ocupa el pedido
+
+			posicion = buscarPedido(id);
+
+			// Si hay más de un pedido
+
+			if (posicion > 0) {
+
+				// Se guardan los pedidos a intercambiar
+
+				prioritario = pedidos.get(posicion);
+				secundario = pedidos.get(posicion - 1);
+
+				// Se da prioridad al pedido prioritario buscado
+
+				pedidos.set(posicion, secundario);
+				pedidos.set((posicion - 1),  prioritario);
+			}
+		}
+		
+		return prioritario;
+	}
+	
 	// Devuelve todos los pedidos almacenados
 	
-	public LinkedList<Pedido> getPedidos() {
+	public List<Pedido> getPedidos() {
 		
 		return pedidos;
 	}
